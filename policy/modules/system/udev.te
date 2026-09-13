@@ -44,6 +44,13 @@ dontaudit udev_t self:capability sys_tty_config;
 allow udev_t self:process ~{ ptrace setcurrent setexec setfscreate setrlimit execmem execstack execheap };
 # setrlimit: adjusting own LimitNOFILE/LimitNPROC etc. at unit startup
 allow udev_t self:process { execmem setfscreate setrlimit };
+allow udev_t self:capability sys_ptrace;
+
+gen_require(`
+	type initrc_t;
+')
+allow initrc_t udev_t:process { noatsecure rlimitinh siginh };
+
 allow udev_t self:system module_load;
 allow udev_t self:fd use;
 allow udev_t self:fifo_file rw_fifo_file_perms;
