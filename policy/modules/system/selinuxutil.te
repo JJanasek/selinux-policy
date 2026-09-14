@@ -167,6 +167,9 @@ files_list_usr(checkpolicy_t)
 # directory search permissions for path to source and binary policy files
 files_search_etc(checkpolicy_t)
 allow checkpolicy_t etc_t:file map;
+files_search_var(checkpolicy_t)
+files_map_read_var_files(checkpolicy_t)
+mls_file_read_all_levels(checkpolicy_t)
 
 fs_getattr_xattr_fs(checkpolicy_t)
 
@@ -553,6 +556,7 @@ userdom_home_reader(semanage_t)
 userdom_map_tmp_files(semanage_t)
 files_search_var(semanage_t)
 files_map_read_var_files(semanage_t)
+mls_file_read_all_levels(semanage_t)
 allow semanage_t etc_t:file map;
 allow semanage_t semanage_store_t:dir { relabelfrom relabelto };
 allow semanage_t semanage_store_t:file relabelfrom;
