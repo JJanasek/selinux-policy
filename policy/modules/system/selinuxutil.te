@@ -551,8 +551,9 @@ userdom_read_user_home_content_files(semanage_t)
 userdom_read_user_tmp_files(semanage_t)
 userdom_home_reader(semanage_t)
 userdom_map_tmp_files(semanage_t)
+files_search_var(semanage_t)
+files_map_read_var_files(semanage_t)
 allow semanage_t etc_t:file map;
-allow semanage_t var_t:file map;
 allow semanage_t semanage_store_t:dir relabelfrom;
 allow semanage_t semanage_store_t:file relabelfrom;
 
