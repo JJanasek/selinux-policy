@@ -394,6 +394,26 @@ interface(`udev_create_kobject_uevent_socket',`
 
 ########################################
 ## <summary>
+##	Connect to udevd over a unix stream socket.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`udev_stream_connect',`
+	gen_require(`
+		type udev_t;
+		type udev_var_run_t;
+	')
+
+	files_search_pids($1)
+	stream_connect_pattern($1, udev_var_run_t, udev_var_run_t, udev_t)
+')
+
+########################################
+## <summary>
 ##	Create a domain for processes
 ##	which can be started by udev.
 ## </summary>
