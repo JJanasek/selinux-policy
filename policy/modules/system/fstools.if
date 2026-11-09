@@ -21,6 +21,24 @@ interface(`fstools_domtrans',`
 
 ########################################
 ## <summary>
+##	Do not reset ATSECURE, rlimits, or signals on transition to fsadm.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`fstools_noatsecure',`
+	gen_require(`
+		type fsadm_t;
+	')
+
+	allow $1 fsadm_t:process { noatsecure rlimitinh siginh };
+')
+
+########################################
+## <summary>
 ##	NNP Transition to fstools.
 ## </summary>
 ## <param name="domain">

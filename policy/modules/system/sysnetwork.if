@@ -22,6 +22,24 @@ interface(`sysnet_domtrans_dhcpc',`
 
 ########################################
 ## <summary>
+##	Do not reset ATSECURE, rlimits, or signals on transition to dhcpc.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`sysnet_dhcpc_noatsecure',`
+	gen_require(`
+		type dhcpc_t;
+	')
+
+	allow $1 dhcpc_t:process { noatsecure rlimitinh siginh };
+')
+
+########################################
+## <summary>
 ##	Execute DHCP clients in the dhcpc domain, and
 ##	allow the specified role the dhcpc domain.
 ## </summary>
@@ -770,6 +788,24 @@ interface(`sysnet_domtrans_ifconfig',`
 
 	corecmd_search_bin($1)
 	domtrans_pattern($1, ifconfig_exec_t, ifconfig_t)
+')
+
+########################################
+## <summary>
+##	Do not reset ATSECURE, rlimits, or signals on transition to ifconfig.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`sysnet_ifconfig_noatsecure',`
+	gen_require(`
+		type ifconfig_t;
+	')
+
+	allow $1 ifconfig_t:process { noatsecure rlimitinh siginh };
 ')
 
 ########################################
