@@ -926,24 +926,6 @@ interface(`ssh_domtrans_keygen',`
 
 ########################################
 ## <summary>
-##	Do not reset ATSECURE, rlimits, or signals on transition to ssh-keygen.
-## </summary>
-## <param name="domain">
-##	<summary>
-##	Domain allowed access.
-##	</summary>
-## </param>
-#
-interface(`ssh_keygen_noatsecure',`
-	gen_require(`
-		type ssh_keygen_t;
-	')
-
-	allow $1 ssh_keygen_t:process { noatsecure rlimitinh siginh };
-')
-
-########################################
-## <summary>
 ##	Execute the ssh key generator in the caller domain.
 ## </summary>
 ## <param name="domain">

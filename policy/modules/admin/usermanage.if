@@ -131,24 +131,6 @@ interface(`usermanage_domtrans_passwd',`
 
 ########################################
 ## <summary>
-##	Do not reset ATSECURE, rlimits, or signals on transition to passwd.
-## </summary>
-## <param name="domain">
-##	<summary>
-##	Domain allowed access.
-##	</summary>
-## </param>
-#
-interface(`usermanage_passwd_noatsecure',`
-	gen_require(`
-		type passwd_t;
-	')
-
-	allow $1 passwd_t:process { noatsecure rlimitinh siginh };
-')
-
-########################################
-## <summary>
 ##	Send sigkills to passwd.
 ## </summary>
 ## <param name="domain">
